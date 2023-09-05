@@ -1,15 +1,23 @@
+import java.io.File;
 import java.util.Scanner;
 
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Введите число и нажмите <Enter> ");
-        int number1 = new Scanner(System.in).nextInt();
-        System.out.println("Введите следующее число и нажмите <Enter> ");
-        int number2 = new Scanner(System.in).nextInt();
-        double quotient = (double) number1 / number2;
-        System.out.println("Сумма двух чисел = "+ (number1+number2));
-        System.out.println("Разность двух чисел = "+ (number1-number2));
-        System.out.println("Умножение двух чисел = "+ (number1*number2));
-        System.out.println("Частное = "+ (quotient));
+        boolean kukuk =false;
+        int count=0;
+        do {
+            count++;
+            System.out.println("Введите путь к лог-файлу: ");
+            String path = new Scanner(System.in).nextLine();
+            File file = new File(path);
+            boolean fileExists = file.exists();
+            boolean isDirectory = file.isDirectory();
+            if (!fileExists) System.out.println("Ошибка: файл не найден");
+            if (isDirectory) System.out.println("Ошибка: Указан путь до папки");
+            kukuk=fileExists&&!isDirectory;
+        }  while (!kukuk);
+        System.out.println("Путь указан верно! Файл с логами найден c "+count+" попытки");
     }
 }
